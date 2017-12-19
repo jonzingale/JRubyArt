@@ -13,3 +13,7 @@ further,
 
 size, smooth and many other setup methods are no longer<p>
 supported in the `setup` method. JRubyArt now has a `settings` method.
+  
+  
+Much of the Code in this Repo will need to be updated,<p>
+especially wrt the `settings` conversion.
