@@ -1,5 +1,8 @@
+  def settings
+    size(displayWidth, displayHeight)
+  end
+
 	def setup
-		size(displayWidth, displayHeight)
 		@w, @h = [width/2.0, 0]
 		@i = 0 ; @t = 0
     frame_rate 20
