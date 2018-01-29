@@ -28,11 +28,12 @@ def setup
   @draw_time = nil
   @fractal = Fractal.new do |n, c|
 
-    # exp
-    trig = n.rect.map{|t| Math.tan(PI*t)}
-    c + n * Complex(*trig)
+    # mandelTangents
+    # trig = n.rect.map{|t| Math.tan(PI*t)}
+    # c + n * Complex(*trig)
 
     # (n ** 2) + c # mandelbrot
+
     # c + ROOT5 * (PHI**n - PHA**n) #fib
 
     # canyon like
