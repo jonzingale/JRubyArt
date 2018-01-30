@@ -28,7 +28,7 @@ end
 
 def barycentric
 	sig, tau = set_vars
-	pt = A + sig * BA + tau * CA + sig*tau*A
+	pt = A + sig * BA + tau * CA #+ sig*tau*A/2.0
 	rPt = rescale(pt)
 	ellipse(*rPt, 1, 1)
 end
