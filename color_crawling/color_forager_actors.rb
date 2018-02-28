@@ -11,18 +11,15 @@
 # CHI SQUARE AND PIXELATORS
 
 require (File.expand_path('./color_crawlers', File.dirname(__FILE__)))
-
-
+	def settings
+		size(displayWidth, displayHeight)
+	end
 
 	def setup
 		text_font create_font("SanSerif",25) ; no_stroke
-		@img = loadImage("/Users/Jon/Desktop/CIE_1931.png")
-		@jmg = loadImage("/Users/Jon/Desktop/scans/imgo_daniel.jpeg")
-		# @img = loadImage("/Users/Jon/Desktop/scans/apollonius.jpg");
+		@img = loadImage(ENV['HOME']+"/Desktop/lee_smoking.jpg") # right
+		@jmg = loadImage(ENV['HOME']+"/Desktop/landscape.jpg") # left
 
-		# width, height
-		size(1400,1080) #HOME
-		# size(1920,1080) #JackRabbit
 		background(20) ; frame_rate 30
 		@w,@h = [width,height].map{|i|i/2.0}
   	@walker = [@w+400,@h-200] ; @m = [235,18,85] ; @i = 0
@@ -123,9 +120,8 @@ require (File.expand_path('./color_crawlers', File.dirname(__FILE__)))
 		if @i < 1
 			image(@jmg,10,10) # left picture
 			scale(0.3) ; image(@img, 1.8*width, 10) ; scale(10/3.0) #CIE
-			# scale(0.6) ; image(@img, width-450, 10) ; scale(5/3.0) #APOLLONIUS
-			save('/Users/Jon/Desktop/test.png')
-			@loaded = loadImage("/Users/Jon/Desktop/test.png")
+			save(ENV['HOME']+'/Desktop/test.png')
+			@loaded = loadImage(ENV['HOME']+"/Desktop/test.png") ; @i = 1
 		else
 			image(@loaded,0,0)
 		end
