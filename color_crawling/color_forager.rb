@@ -40,8 +40,8 @@ require (File.expand_path('./color_crawlers', File.dirname(__FILE__)))
 		background(20) ; frame_rate 30
 		text_font create_font("SanSerif",55) ; no_stroke
 
-		@img = loadImage(ENV['HOME']+"/Desktop/lee_smoking.jpg") # right
-		@jmg = loadImage(ENV['HOME']+"/Desktop/landscape.jpg") # left
+		@img = loadImage(ENV['HOME']+"/Desktop/crawlerImages/pic1.png") # right
+		@jmg = loadImage(ENV['HOME']+"/Desktop/crawlerImages/pic2.png") # left
 		@w,@h = [width,height].map{|i|i/2.0}
 		@i = 0
 
@@ -62,8 +62,8 @@ require (File.expand_path('./color_crawlers', File.dirname(__FILE__)))
 			scale_img(@img,1.3*width,2.2*@img.width.to_f,@w+900,0)# right picture
 			scale_img(@jmg,0.6*width,@img.width.to_f,0,0)# left picture
 
-			save(ENV['HOME']+'/Desktop/test.png')
-			@loaded = loadImage(ENV['HOME']+"/Desktop/test.png") ; @i = 1
+			save(ENV['HOME']+'/Desktop/crawlerImages/test.png')
+			@loaded = loadImage(ENV['HOME']+"/Desktop/crawlerImages/test.png") ; @i = 1
 		else
 			image(@loaded,0,0) ; @loaded = get
 		end
