@@ -21,7 +21,7 @@ def setup
   @mandelbrot = Fractal.new do |n, c|
 
     # discrete dyn: rx(1-x)
-    3.88*n*(1-n) + c
+    3.88*Complex(n)*(1-(Complex(n))) + c
 
     # fibs
     # PHI**n - PHA**n + c
