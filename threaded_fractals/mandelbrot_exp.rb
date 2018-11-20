@@ -17,8 +17,21 @@ class Mandelbrot
 	end
 end
 
-def setup
+def settings
 	size(displayWidth, displayHeight)
+end
+
+# def setup
+#   colorMode HSB, 360, 100, 100, 100
+#   stroke_width 1
+#   frame_rate 50
+#   background 0
+#   @center = Vector.elements([@width/2.0, @height/2.0])
+# end
+
+
+def setup
+	# size(displayWidth, displayHeight)
 	@w, @h = width/2.0, height/2.0
 	colorMode(HSB,360,100,100,100)
 	background(0); @y = 0

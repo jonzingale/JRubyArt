@@ -20,12 +20,15 @@ def setup
   @draw_time = nil
   @mandelbrot = Fractal.new do |n, c|
 
+    # discrete dyn: rx(1-x)
+    3.88*n*(1-n) + c
+
     # fibs
     # PHI**n - PHA**n + c
 
     # fluid like
-    trig = n.rect.map{|t| Math.cos(PI*t)}
-    0.25*(2+7*n-(2+5*n)*Complex(*trig)) + c
+    # trig = n.rect.map{|t| Math.cos(PI*t)}
+    # 0.25*(2+7*n-(2+5*n)*Complex(*trig)) + c
 
     # canyon like
     # trig = n.rect.map{|t| Math.cos(PI*t)}
