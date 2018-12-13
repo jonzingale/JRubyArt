@@ -2,14 +2,14 @@ require (File.expand_path('./lorenz', File.dirname(__FILE__)))
 	# binding = $app
 
 	def settings
-		size(displayWidth, displayHeight)
+		size(displayWidth/2, displayHeight/2)
 	end
 
 	def setup
-		text_font create_font("SanSerif",50)
+		# text_font create_font("SanSerif",50)
 		colorMode(HSB,360,100,100,60)
 		@w, @h = width/2.0, height/2.0
-    frame_rate 100
+    frame_rate 400
 		background 0
 		no_stroke
 
@@ -21,10 +21,10 @@ require (File.expand_path('./lorenz', File.dirname(__FILE__)))
 	end
 
 	def plot_lorenz(attractor)
-		x = attractor.x * 15 + @w
-		y = attractor.y * 15 + @h
+		x = attractor.x * 5 + @w
+		y = attractor.y * 5 + @h
 		c = attractor.color
-		fill(*c) ; ellipse(x,y,6,6)
+		fill(*c) ; ellipse(x,y,3,3)
 		attractor.blink
 	end
 
