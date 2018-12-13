@@ -1,7 +1,11 @@
 require (File.expand_path('./lorenz', File.dirname(__FILE__)))
 	# binding = $app
-	def setup
+
+	def settings
 		size(displayWidth, displayHeight)
+	end
+
+	def setup
 		text_font create_font("SanSerif",50)
 		colorMode(HSB,360,100,100,60)
 		@w, @h = width/2.0, height/2.0
