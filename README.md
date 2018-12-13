@@ -18,3 +18,12 @@ supported in the `setup` method. JRubyArt now has a `settings` method.
   
 Much of the Code in this Repo will need to be updated,<p>
 especially wrt the `settings` conversion.
+  
+```
+  # Add the following method to any Ruby Processing file without it.
+  # Remove size(displayWidth, displayHeight) from setup.
+  def settings
+		size(displayWidth, displayHeight)
+	end
+
+```
