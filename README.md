@@ -22,8 +22,5 @@ especially wrt the `settings` conversion.
 ```
   # Add the following method to any Ruby Processing file without it.
   # Remove size(displayWidth, displayHeight) from setup.
-  def settings
-		size(displayWidth, displayHeight)
-	end
-
+  def settings ; size(displayWidth, displayHeight) ; end
 ```
