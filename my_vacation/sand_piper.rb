@@ -38,8 +38,11 @@
     end
   end
 
+  def settings ; size(1280, 720) end
+  
   def setup
-    size(1280, 720) ; frame_rate 20
+    frame_rate 20 ; 
+    # size(1280, 720) ; frame_rate 20
     colorMode(HSB,360,100,100,100)
     text_font create_font("SanSerif", 100)
     @piper = SandPiper.new(width/3, height/2+160)

@@ -6,7 +6,6 @@ require (File.expand_path('./lorenz', File.dirname(__FILE__)))
 	end
 
 	def setup
-		# text_font create_font("SanSerif",50)
 		colorMode(HSB,360,100,100,60)
 		@w, @h = width/2.0, height/2.0
     frame_rate 400
@@ -24,10 +23,11 @@ require (File.expand_path('./lorenz', File.dirname(__FILE__)))
 		x = attractor.x * 5 + @w
 		y = attractor.y * 5 + @h
 		c = attractor.color
-		fill(*c) ; ellipse(x,y,3,3)
+		fill(*c) ; ellipse(x,y,6,6)
 		attractor.blink
 	end
 
 	def draw
+		clear
 		@trajectories.each{|t| plot_lorenz t}
 	end
