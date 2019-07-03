@@ -70,7 +70,6 @@
   def setup
     frame_rate 1 ; 
     colorMode(HSB,360,100,100,100)
-    fill 0
     text_font create_font("SanSerif", 30)
     # @piper = SandPiper.new(width/3, height/2+160)
     @firefly = [*1..20].map{ |i| FireFly.new(rand*width, rand*height) }
@@ -82,5 +81,5 @@
     # image(@img, 0, 0)
     @firefly.each{|fly| fly.render_body}
     # @piper.render_body
-    fill 80 ; text('My Lakewood Vacation',60,160)
+    fill(0,0,100) ; text('My Lakewood Vacation',60,160)
   end
