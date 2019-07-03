@@ -27,18 +27,24 @@
     end
 
     def render_yard
+      stroke_width 40
       # sidewalk
-      stroke(30,20,60); line(0, 8*height/10, width, 7*height/10)
+      stroke(30,20,30); line(0, 80*height/100, width, 73*height/100)
+      fill(30,20,30); rect(0, 80*height/100, width, 300)
+
+      stroke_width 0.2
       # grass
-      stroke(100,255,60); line(0, 7*height/10, width, 6*height/10)      
+      stroke(100,255,30); line(0, 65*height/100, width, 58*height/100)      
+      fill(100,255,30); rect(0, 65*height/100, width, 30)
+
       # fence
-      stroke(30,0,60); line(0, 6*height/10, width, 5*height/10)
+      stroke(30,0,60); line(300, 50*height/100, width, 43*height/100)
 
     end
   end
 
 
-  def settings ; size(500, 500) end
+  def settings ; size(1400, 500) end
   
   def setup
     frame_rate 5 ;
@@ -53,7 +59,7 @@
 
   def draw
     # image(@img, 0, 0)
-    @yard.render_yard
     @firefly.each{|fly| fly.render_body}
     fill(220,20,100) ; text('My Lakewood Vacation', 10, height/10)
+    @yard.render_yard
   end
