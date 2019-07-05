@@ -7,18 +7,18 @@
       @h = hh * rand/2.0
     end
 
-    # todo:
-    # rising fireflies
-    # house, car, tree
-    # blinky grass?
-
     def render_body
       # vibrancy of body light
-      rand < 0.99 ? fill(0,0,0,60) : fill(68, 100*@pert, 100*@pert)
+      rand < 0.99 ? fill(0,0,0,0) : fill(68, 100*@pert, 100*@pert)
         # write code to raise lights
       ellipse(@w, @h, 10, 10) # body
     end
   end
+
+    # todo:
+    # rising fireflies
+    # house, car, tree
+    # blinky grass?
 
   class Yard
     def initialize
@@ -26,7 +26,7 @@
     end
 
     def render_tree(k, thick=0.7)
-      fill(36, 92, 20,10)
+      fill(36, 92, 20,80)
       quad(k*width/10, 8*height/10,
            k*width/10, 0,
            (k+thick)*width/10, 0,
@@ -35,6 +35,7 @@
       fill(120, 50, 70)
       (0..8).each { |i| ellipse(300+50*i,50,20*i,30*i) }
       (0..8).each { |i| ellipse(100+50*(8-i),50,20*(8-i),30*(6-i)) }
+      (0..8).each { |i| ellipse(800+50*(8-i),50,20*i,30*i) }
 
       no_stroke
     end
@@ -52,13 +53,13 @@
       )
 
       # fence
-      stroke(30,0,60); stroke_width(0.1)
+      stroke(30,0,60,100); stroke_width(0.6)
       (0..8).each do |i|
         line(300, (43+2*i)*height/100, width, (50+2*i)*height/100)
       end ; no_stroke
 
       # sidewalk
-      fill(30,20,55);
+      fill(30,30,35);
       quad(0, 73*height/100,
            width, 80*height/100,
            width, height,
@@ -80,6 +81,8 @@
   end
 
   def draw
+    fill(0,0,0,70)
+    rect(0,0,width,height)
     @yard.render_yard
     @firefly.each{|fly| fly.render_body}
     fill(220,20,100) ; text('Fireflies on Cook Avenue', 20, 9*height/10)
