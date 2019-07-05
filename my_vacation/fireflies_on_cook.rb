@@ -25,24 +25,42 @@
 
     end
 
+    def render_tree(k, thick=0.7)
+      fill(36, 92, 20,10)
+      quad(k*width/10, 8*height/10,
+           k*width/10, 0,
+           (k+thick)*width/10, 0,
+           (k+thick)*width/10, 8*height/10)
+
+      fill(120, 50, 70)
+      (0..8).each { |i| ellipse(300+50*i,50,20*i,30*i) }
+      (0..8).each { |i| ellipse(100+50*(8-i),50,20*(8-i),30*(6-i)) }
+
+      no_stroke
+    end
+
     def render_yard
-      # fence
-      stroke(30,0,60,30); stroke_width(0.1)
-      (0..8).each do |i|
-        line(300, (50+2*i)*height/100, width, (43+2*i)*height/100)
-      end ; no_stroke
+      # trees
+      render_tree(8)
+      render_tree(3, 0.4)
 
       # grass
       fill(100,255,30);
-      quad(0, 65*height/100,
-           width, 58*height/100,
-           width, height,
-           0, height)
+      quad(
+        0, 48*height/100, width, 55*height/100,
+        width, height, 0, height
+      )
+
+      # fence
+      stroke(30,0,60); stroke_width(0.1)
+      (0..8).each do |i|
+        line(300, (43+2*i)*height/100, width, (50+2*i)*height/100)
+      end ; no_stroke
 
       # sidewalk
       fill(30,20,55);
-      quad(0, 80*height/100,
-           width, 73*height/100,
+      quad(0, 73*height/100,
+           width, 80*height/100,
            width, height,
            0, height)
 
