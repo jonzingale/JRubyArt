@@ -4,9 +4,14 @@ require (File.expand_path('./snow', File.dirname(__FILE__)))
 	RES = 40.0.freeze
 	# binding = $app
 
+  # Add the following method to any Ruby Processing file without it.
+  # Remove size(displayWidth, displayHeight) from setup.
+  def settings ; size(displayWidth, displayHeight) ; end
+
+
 	def setup
 		text_font create_font("SanSerif",50)
-		size(displayWidth, displayHeight)
+		# size(displayWidth, displayHeight)
 		colorMode(HSB,360,100,100,60)
 		@w, @h = [width/2.0, height/2.0]
 		@i = 0 ; @t = 0 ; background(0)

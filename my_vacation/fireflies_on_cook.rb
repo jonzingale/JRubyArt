@@ -76,7 +76,7 @@
     background 0
     colorMode(HSB,360,100,100,100)
     text_font create_font("word", 25)
-    @firefly = (1..80).map{ |i| FireFly.new(width, height) }
+    @firefly = (1..120).map{ |i| FireFly.new(width, height) }
     @yard = Yard.new
   end
 
