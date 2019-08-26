@@ -1,4 +1,11 @@
-  URL_STUB = '/Users/Jon/Desktop/crude/RubyProcessing/my_vacation/'
+# TODO: seek closer approximations
+FireflyColors = [
+  [39, 100, 50], # orange
+  [56.2, 100, 50], # canaryYellow
+  [51, 100, 50], # sunburstYellow
+  [90, 100, 50], # chartreuse
+  [157, 100, 49] # springGreen
+]
 
   class FireFly
     def initialize(ww, hh)
@@ -8,8 +15,11 @@
     end
 
     def render_body
+      # cc = FireflyColors[rand 5]
       # vibrancy of body light
       rand < 0.99 ? fill(0,0,0,0) : fill(68, 100*@pert, 100*@pert)
+      # rand < 0.99 ? fill(0,0,0,0) : fill(*cc)
+
         # write code to raise lights
       ellipse(@w, @h, 10, 10) # body
     end
