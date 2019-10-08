@@ -18,10 +18,6 @@ class Epic
   end
 end
 
-def grid(size)
-  [*0..size].product([*0..size])
-end
-
 # it = Epic.new
 # that = it.evalPair(:epis, 4, 3)
 # puts that
