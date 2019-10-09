@@ -16,15 +16,18 @@ class Grid
   end
 
   def top_value
-    # val = @coords.map { |x, y| @maths.choose(x, y) }.max.to_f
+    # keep for epis and epis mod fact codomain
     val = @coords.map { |x, y| @maths.epis(x, y) }.max.to_f
+
+    # val = @coords.map { |x, y| @maths.choose(x, y) }.max.to_f
   end
 
   def to_grid
     @coords.map do |x, y|
+      # val = @maths.epis(x, y)
+      val = @maths.epis(x, y) / @maths.fact(y)
+
       # val = @maths.choose(x, y)
-      val = @maths.epis(x, y)
-      # val = @maths.epis(x, y) / @maths.fact(y)
       rect = [@x_int + x*@size, @y_int + y*@size, @size, @size]
       [val, rect]
     end

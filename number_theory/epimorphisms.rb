@@ -17,11 +17,14 @@ def draw
     if val == 0 ; fill 0
     else
       # epimorphisms
-      val = 360 * (val / @scalar)**0.004 # root scale it
-      fill(val % 360, val % 70 + 30, val % 70 + 30)
+      # val = 360 * (val / @scalar)**0.004 # root scale it
+      # fill(val % 360, val % 70 + 30, val % 70 + 30)
 
       # epimorphisms modulo permutations of codomains
       # fill(val % 360, val % 70 + 30, val % 70 + 30)
+
+      # separate colors: epis mod perms
+      fill(val % 2 * 180, val % 70 + 30, val % 70 + 30)
     end
     rect(x-100, y-100, w, h)
   end
