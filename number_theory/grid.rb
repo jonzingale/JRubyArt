@@ -24,8 +24,8 @@ class Grid
 
   def to_grid
     @coords.map do |x, y|
-      # val = @maths.epis(x, y)
-      val = @maths.epis(x, y) / @maths.fact(y)
+      val = @maths.epis(x, y)
+      # val = @maths.epis(x, y) / @maths.fact(y)
 
       # val = @maths.choose(x, y)
       rect = [@x_int + x*@size, @y_int + y*@size, @size, @size]
