@@ -13,17 +13,16 @@ def setup
 end
 
 def draw
-  @rects.each do |(val, rec)|
+  @rects.each do |(val, (x,y,w,h))|
     if val == 0 ; fill 0
     else
-      # val = 360 * (val / @scalar)**0.004 # root scale it
-      fill(val % 360, val % 70 + 30, val % 70 + 30, 100)
+      # epimorphisms
+      val = 360 * (val / @scalar)**0.004 # root scale it
+      fill(val % 360, val % 70 + 30, val % 70 + 30)
 
-      # val = val**0.3
-      # fill(val % 360, val % 70 + 30, val % 70 + 30, 100)
-      # fill(val % 360,100,100,100)
+      # epimorphisms modulo permutations of codomains
+      # fill(val % 360, val % 70 + 30, val % 70 + 30)
     end
-    x, y, w, h = rec
     rect(x-100, y-100, w, h)
   end
 end

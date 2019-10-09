@@ -6,26 +6,25 @@ class Grid
   def initialize(num, size, width, height)
     @num = num
     @size = size
-    @coords = []
-    get_coords
+    @coords = [] ; get_coords
     @x_int, @y_int = [width/size, height/size]
     @maths = Epic.new
   end
 
   def get_coords
-    [*0..@num].each { |x| [*0..x].each {|y| @coords << [x,y]} }
+    [*0..@num].each { |x| [*0..x].each {|y| @coords << [x, y]} }
   end
 
   def top_value
-    # val = @coords.map { |x, y| @maths.choose(x, y) }.max
-    val = @coords.map { |x, y| @maths.epis(x, y) }.max
+    # val = @coords.map { |x, y| @maths.choose(x, y) }.max.to_f
+    val = @coords.map { |x, y| @maths.epis(x, y) }.max.to_f
   end
 
   def to_grid
     @coords.map do |x, y|
       # val = @maths.choose(x, y)
-      # val = @maths.epis(x, y)
-      val = @maths.epis(x, y) / @maths.fact(y)
+      val = @maths.epis(x, y)
+      # val = @maths.epis(x, y) / @maths.fact(y)
       rect = [@x_int + x*@size, @y_int + y*@size, @size, @size]
       [val, rect]
     end
