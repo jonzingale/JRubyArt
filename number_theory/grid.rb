@@ -17,13 +17,12 @@ class Grid
 
   def top_value
     # keep for epis and epis mod fact codomain
-    val = @coords.map { |x, y| @maths.epis(x, y) }.max.to_f
+    # val = @coords.map { |x, y| @maths.epis(x, y) }.max.to_f
 
     # val = @coords.map { |x, y| @maths.choose(x, y) }.max.to_f
 
-    # monics and monsters, reversed coords cause yeah.
-    # val = @coords.map { |x, y| @maths.monics(y, x) }.max.to_f
-    # val = @coords.map { |x, y| @maths.monster(y, x) }.max.to_f
+    # monics reversed coords cause yeah.
+    val = @coords.map { |x, y| @maths.monics(y, x) }.max.to_f
   end
 
   def to_grid
@@ -33,9 +32,8 @@ class Grid
 
       # val = @maths.choose(x, y)
 
-      # monics and monsters, reversed coords cause yeah.
-      # val = @maths.monics(y, x) # these get fast too quick
-      # val = @maths.monster(y, x) # these are likely always zero
+      # monics reversed coords cause yeah.
+      # val = @maths.monics(y, x)
 
       rect = [@x_int + x*@size, @y_int + y*@size, @size, @size]
       [val, rect]

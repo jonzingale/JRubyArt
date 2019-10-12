@@ -6,12 +6,13 @@ class Epic
   end
 
   def monics(d, c)
-    fact(d) * choose(c, d)
+    fact(c) / fact(c-d)
   end
 
-  def monster(d, c) # is it possible that this is 0 for all time!
-    (0..c).inject(0) {|a, k| a + (-1)**k * choose(c, k) * monics(d, c) }
-  end
+  # def monster(d, c) # monics is symmetric so zero for all time!
+  #   # (0..c).inject(0) {|a, k| a + (-1)**k * choose(c, k) * monics(d, c) }
+  #   (0..c).map {|k| (-1)**k * choose(c, k) * monics(d, c) }
+  # end
 
   def fact(n)
     (1..n).inject(1, :*)
@@ -27,7 +28,7 @@ class Epic
 end
 
 # it = Epic.new
-# that = it.monster(3, 3)
+# that = it.monics(3, 3)
 # puts that
 
 # byebug
