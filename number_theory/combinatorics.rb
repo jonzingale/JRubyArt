@@ -1,6 +1,6 @@
 # require 'byebug'
 
-class Epic
+class MappingCombinatorics
   def evalPair(fsym, x, y)
     self.send(fsym, x, y)
   end
@@ -27,7 +27,7 @@ class Epic
   end
 end
 
-# it = Epic.new
+# it = MappingCombinatorics.new
 # that = it.monics(3, 3)
 # puts that
 

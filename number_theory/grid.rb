@@ -1,5 +1,5 @@
 # require 'byebug'
-require_relative 'epic'
+require_relative 'combinatorics'
 
 class Grid
   attr_accessor :coords
@@ -8,7 +8,7 @@ class Grid
     @size = size
     @coords = [] ; get_coords
     @x_int, @y_int = [width/size, height/size]
-    @maths = Epic.new
+    @maths = MappingCombinatorics.new
   end
 
   def get_coords
