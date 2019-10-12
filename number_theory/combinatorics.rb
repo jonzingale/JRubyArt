@@ -1,6 +1,6 @@
 # require 'byebug'
 
-class MappingCombinatorics
+class Combinatorics
   def evalPair(fsym, x, y)
     self.send(fsym, x, y)
   end
@@ -27,7 +27,7 @@ class MappingCombinatorics
   end
 end
 
-# it = MappingCombinatorics.new
+# it = Combinatorics.new
 # that = it.monics(3, 3)
 # puts that
 

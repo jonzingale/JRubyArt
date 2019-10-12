@@ -8,7 +8,7 @@ class Grid
     @size = size
     @coords = [] ; get_coords
     @x_int, @y_int = [width/size, height/size]
-    @maths = MappingCombinatorics.new
+    @maths = Combinatorics.new
   end
 
   def get_coords
