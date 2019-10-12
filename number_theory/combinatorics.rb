@@ -1,4 +1,4 @@
-# require 'byebug'
+require 'byebug'
 
 class Combinatorics
   def evalPair(fsym, x, y)
@@ -9,10 +9,10 @@ class Combinatorics
     fact(c) / fact(c-d)
   end
 
-  # def monster(d, c) # monics is symmetric so zero for all time!
-  #   # (0..c).inject(0) {|a, k| a + (-1)**k * choose(c, k) * monics(d, c) }
-  #   (0..c).map {|k| (-1)**k * choose(c, k) * monics(d, c) }
-  # end
+  def weirdOperator(c) # An Always zero function.
+    (0..c).inject(0) {|a, k| a + (-1)**k * 1.0/( fact(c-k) * fact(k) )}
+    # (0..c).inject(0) {|a, k| a + (-1)**k * choose(c,k) }
+  end
 
   def fact(n)
     (1..n).inject(1, :*)
@@ -27,9 +27,9 @@ class Combinatorics
   end
 end
 
-# it = Combinatorics.new
-# that = it.monics(3, 3)
-# puts that
+it = Combinatorics.new
+that = it.weirdOperator(4)
+puts that
 
-# byebug
-# 3
+byebug
+3
