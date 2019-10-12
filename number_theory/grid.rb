@@ -20,6 +20,10 @@ class Grid
     val = @coords.map { |x, y| @maths.epis(x, y) }.max.to_f
 
     # val = @coords.map { |x, y| @maths.choose(x, y) }.max.to_f
+
+    # monics and monsters, reversed coords cause yeah.
+    # val = @coords.map { |x, y| @maths.monics(y, x) }.max.to_f
+    # val = @coords.map { |x, y| @maths.monster(y, x) }.max.to_f
   end
 
   def to_grid
@@ -28,6 +32,11 @@ class Grid
       # val = @maths.epis(x, y) / @maths.fact(y)
 
       # val = @maths.choose(x, y)
+
+      # monics and monsters, reversed coords cause yeah.
+      # val = @maths.monics(y, x) # these get fast too quick
+      # val = @maths.monster(y, x) # these are likely always zero
+
       rect = [@x_int + x*@size, @y_int + y*@size, @size, @size]
       [val, rect]
     end

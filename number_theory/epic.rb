@@ -5,6 +5,14 @@ class Epic
     self.send(fsym, x, y)
   end
 
+  def monics(d, c)
+    fact(d) * choose(c, d)
+  end
+
+  def monster(d, c) # is it possible that this is 0 for all time!
+    (0..c).inject(0) {|a, k| a + (-1)**k * choose(c, k) * monics(d, c) }
+  end
+
   def fact(n)
     (1..n).inject(1, :*)
   end
@@ -19,7 +27,7 @@ class Epic
 end
 
 # it = Epic.new
-# that = it.evalPair(:epis, 4, 3)
+# that = it.monster(3, 3)
 # puts that
 
 # byebug
