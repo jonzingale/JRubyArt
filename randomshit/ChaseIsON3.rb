@@ -19,7 +19,7 @@ def rootsUnity(numbre)#::Int -> [trivalStar]
   (0...numbre).map{|i|[Math.cos(i*2*PI/numbre),Math.sin(i*2*PI/numbre)]}
 end
 
-def diff(a,b,c,d)#::(Coord,Coord)->(Coord,Coord)-> Real
+def dist(a,b,c,d)#::(Coord,Coord)->(Coord,Coord)-> Real
   Math.sqrt((c-a)**2+(d-b)**2)
 end
 
@@ -34,9 +34,9 @@ def walker_z(p=width/2,q=height/2) # Follows mouse
     pair2 = [mouseX,mouseY]
 
     pairs = signs.map{|i,j| [p+i,q+j,*pair2] }
-    min_p = pairs.min_by{|pt|diff(*pt)}[0,2]
-    max_p = pairs.max_by{|pt|diff(*pt)}[0,2]
-    low = pairs.map{|pt|diff(*pt)}.min
+    min_p = pairs.min_by{|pt|dist(*pt)}[0,2]
+    max_p = pairs.max_by{|pt|dist(*pt)}[0,2]
+    low = pairs.map{|pt|dist(*pt)}.min
 
     @wz1, @wz2 = low <= 10 || low >= 30 ? min_p : max_p
     point(@wz1, @wz2)
@@ -54,9 +54,9 @@ def walker_y(p=width/2,q=height/2) # Follower
     pair2 = (@wx1.nil? ? [6,0] : [@wx1, @wx2])
 
     pairs = signs.map{|i,j| [p+i ,q+j, *pair2] }
-    min_p = pairs.min_by{|pt|diff(*pt)}[0,2]
-    max_p = pairs.max_by{|pt|diff(*pt)}[0,2]
-    low = pairs.map{|pt|diff(*pt)}.min
+    min_p = pairs.min_by{|pt|dist(*pt)}[0,2]
+    max_p = pairs.max_by{|pt|dist(*pt)}[0,2]
+    low = pairs.map{|pt|dist(*pt)}.min
 
     @wy1, @wy2 = low <= 10 || low >= 30 ? min_p : max_p
     point(@wy1, @wy2)
@@ -73,9 +73,9 @@ def walker_x(p=width/4,q=height/2) # Leader
     p , q = (@wx1.nil? ? [p,q]  : [@wx1,@wx2])
 
     pairs = signs.map{|i,j| [*pair1,i+p,j+q] }
-    min_p = pairs.min_by{|pt|diff(*pt)}[0]
-    max_p = pairs.max_by{|pt|diff(*pt)}[0]
-    low = pairs.map{|pt|diff(*pt)}.min
+    min_p = pairs.min_by{|pt|dist(*pt)}[0]
+    max_p = pairs.max_by{|pt|dist(*pt)}[0]
+    low = pairs.map{|pt|dist(*pt)}.min
 
     # to keep this guy ahead
     k = (low <= 100 ? 7 : low > 300 ? 3 : 4)
@@ -101,7 +101,7 @@ def bezierLand
   stroke(r,g,b)
 
   roots = rootsUnity(6).shuffle
-  b_points = roots.inject([]){|js,i| js+i }.take(8)
+  b_points = roots.flatten.take(8)
 
   strokeWeight(0.2) # quiet reds
   beez = b_points.shuffle.map{|i|y-400*i}
@@ -121,11 +121,7 @@ def bezierLand
 end
 
 def draw
-  # dots chasing one another.
-  walker_y
-  walker_x
-  # dot chasing mouse
-  walker_z
-  ###
+  walker_y ; walker_x # dots chasing one another.
+  walker_z # dot chasing mouse
   bezierLand
 end
