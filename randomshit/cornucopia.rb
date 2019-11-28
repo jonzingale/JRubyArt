@@ -1,9 +1,11 @@
 # Triangles gone wild
+def settings
+  size(displayWidth, displayHeight)
+end
 
 def setup
 	text_font create_font("SanSerif",60);
 	background(10)
-	size(1200,800); # width, height
   frame_rate 70
   fill 2.8, 2.6
   smooth

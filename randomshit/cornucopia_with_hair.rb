@@ -1,17 +1,17 @@
 # Spirals cause Jake asked for them.
 R = 100.freeze
-
+def settings
+  size(displayWidth/1.3, displayHeight/1.3)
+end
 def setup
 	text_font create_font("SanSerif",60);
 	background(10)
-	size(1920,1080); # width, height
   frame_rate 40
   fill 2.8, 2.6
   smooth
   @t=1 ; @dex = 1; @rex = 1
+  @onstate = 1
 end
-
-#def evaL(n,[f])::Object -> Function^N -> Object
 
 def trigs(theta)#:: Theta -> R2
   @cos,@sin = %w(sin cos).map{|s| eval("Math.#{s} #{theta}")}
@@ -30,8 +30,6 @@ def walker_y(t,a=0) # index->attraction->point
 	kick = [0,0,0,200] ; snare = (1..3).map{|i|rand(255)}+[rand(100)]
  [kick,snare].map do |b|
  		s1,s2,s3,w = b ; stroke(s1,s2,s3,w) ; strokeWeight(w)
-
-
  		pair = [[-@t%width,height/2],[@t+a,(@t+a)/3]]
  		pair2 = [[@t%width,-height/2],[@t+a,(@t+a)/3]]
  		closer = [diff(pair),diff(pair2)].min
@@ -82,16 +80,18 @@ walker_y(@t) ; walker_x(@t)
 	a,b,c,d,e,f,g,h = b_points.shuffle
 	bezier(a,b,c,d,e,f,g,h);
 
-		# line coods
-		strokeWeight(0.5)
-		r,t = [a,c].map{|i| height - i*rand(300)}
-		q,s = [b,d].map{|i| i*rand(800)}
-		line(q,r,s,t)
+	# line coods
+	strokeWeight(0.5)
+	r,t = [a,c].map{|i| height - i*rand(300)}
+	q,s = [b,d].map{|i| i*rand(800)}
+	line(q,r,s,t)
 
-	# good3 = [a, 500, 250,b,250, 0,e,500]
-	# b_points = good3.map{|d|d+y}
-	# a,b,c,d,e,f,g,h = b_points.shuffle
-	# bezier(a,b,c,d,e,f,g,h);
+	@onstate *= -1 if @t==0
+	if @onstate == -1
+		good3 = [a, 500, 250,b,250, 0,e,500]
+		b_points = good3.map{|d|d+y}
+		bezier(*b_points.shuffle); # strange bezier box
+	end
 # ###bezier
 
 	text_font create_font("SanSerif",60);
@@ -102,22 +102,7 @@ walker_y(@t) ; walker_x(@t)
 # r increases like 100
 	text_font create_font("SanSerif",20);
 	text("Jake" ,x+@cos*@t,@t*R*@sin+x)
-
 	text('ZER0',width - (x/4),height - (y/4))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	#########
 	wd,ht = [width/2,height/2]
@@ -148,12 +133,4 @@ walker_y(@t) ; walker_x(@t)
 	[rand(255),0].map{|n| fill(n,n,n) ; text(@t,wd-100,ht-100)}
 
 end
-
-
-
-
-
-
-
-
 
