@@ -1,12 +1,11 @@
 # Spirals cause Jake asked for them.
 R = 100.freeze
-
+def settings
+  size(displayWidth, displayHeight)
+end
 def setup
 	text_font create_font("SanSerif",60);
 	background(10)
-	# width, height
-	size(1920,1080) #JackRabbit
-	# size(1600,1000) #HOME
   frame_rate 20
   fill 2.8, 2.6
   smooth
