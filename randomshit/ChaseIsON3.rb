@@ -25,7 +25,7 @@ end
 
 ###########
 def walker_z(p=width/2,q=height/2) # Follows mouse
-  kick = [0,0,0,90] ; snare = (1..3).map{|i|rand(255)}+[rand(60)+10]
+  kick = [0,0,0,90] ; snare = (1..3).map{ rand(255) } + [rand(60)+10]
   [snare,kick,snare,snare,kick].each do |s1,s2,s3,w|
     stroke(s1,s2,s3,w) ; strokeWeight(w)
 
@@ -33,10 +33,10 @@ def walker_z(p=width/2,q=height/2) # Follows mouse
     p , q = (@wz1.nil? ? [p,q] : [@wz1,@wz2])
     pair2 = [mouseX,mouseY]
 
-    pairs = signs.map{|i,j| [p+i,q+j,*pair2] }
-    min_p = pairs.min_by{|pt|dist(*pt)}[0,2]
-    max_p = pairs.max_by{|pt|dist(*pt)}[0,2]
-    low = pairs.map{|pt|dist(*pt)}.min
+    pairs = signs.map { |i,j| [p+i,q+j,*pair2] }
+    min_p = pairs.min_by { |pt| dist(*pt) }[0,2]
+    max_p = pairs.max_by { |pt| dist(*pt) }[0,2]
+    low = pairs.map { |pt| dist(*pt) }.min
 
     @wz1, @wz2 = low <= 10 || low >= 30 ? min_p : max_p
     point(@wz1, @wz2)
@@ -45,7 +45,7 @@ end
 
 ###########
 def walker_y(p=width/2,q=height/2) # Follower
-  kick = [0,0,0,90] ; snare = (1..3).map{|i|rand(255)}+[rand(60)+10]
+  kick = [0,0,0,90] ; snare = (1..3).map{ rand(255) } + [rand(70)+10]
   [snare,kick,snare,snare,snare].each do |s1,s2,s3,w|
     stroke(s1,s2,s3,w) ; strokeWeight(w)
 
@@ -53,10 +53,10 @@ def walker_y(p=width/2,q=height/2) # Follower
     p , q = (@wy1.nil? ? [p,q] : [@wy1, @wy2])
     pair2 = (@wx1.nil? ? [6,0] : [@wx1, @wx2])
 
-    pairs = signs.map{|i,j| [p+i ,q+j, *pair2] }
-    min_p = pairs.min_by{|pt|dist(*pt)}[0,2]
-    max_p = pairs.max_by{|pt|dist(*pt)}[0,2]
-    low = pairs.map{|pt|dist(*pt)}.min
+    pairs = signs.map { |i,j| [p+i ,q+j, *pair2] }
+    min_p = pairs.min_by { |pt| dist(*pt) }[0,2]
+    max_p = pairs.max_by { |pt| dist(*pt) }[0,2]
+    low = pairs.map { |pt| dist(*pt) }.min
 
     @wy1, @wy2 = low <= 10 || low >= 30 ? min_p : max_p
     point(@wy1, @wy2)
@@ -64,13 +64,13 @@ def walker_y(p=width/2,q=height/2) # Follower
 end
 
 def walker_x(p=width/4,q=height/2) # Leader
-  kick = [0,0,0,70] ; snare = (1..3).map{|i|rand(255)}+[rand(30)]
+  kick = [0,0,0,70] ; snare = (1..3).map { rand(255) } + [rand(30)]
   [snare,kick,snare,snare,snare].each do |s1,s2,s3,w|
     stroke(s1,s2,s3,w) ; strokeWeight(w)
 
     signs =  [[1,1],[-1,-1],[-1,1],[1,-1]]
-    pair1 = (@wy1.nil? ? [50,0]: [@wy1,@wy2])
-    p , q = (@wx1.nil? ? [p,q]  : [@wx1,@wx2])
+    pair1 = (@wy1.nil? ? [50,0] : [@wy1, @wy2])
+    p , q = (@wx1.nil? ? [p, q] : [@wx1, @wx2])
 
     pairs = signs.map{|i,j| [*pair1,i+p,j+q] }
     min_p = pairs.min_by{|pt|dist(*pt)}[0]
@@ -79,7 +79,9 @@ def walker_x(p=width/4,q=height/2) # Leader
 
     # to keep this guy ahead
     k = (low <= 100 ? 7 : low > 300 ? 3 : 4)
-    point(@wx1=(p-(k*rand-0.5))%width,@wx2=(q-(k*rand-0.5))%height)
+    @wx1=(p-(k*rand-0.5)) % width
+    @wx2=(q-(k*rand-0.5)) % height
+    point(@wx1, @wx2)
   end
 end
 
@@ -88,6 +90,13 @@ def pentagram
   l,m =roots.shuffle.take(2)
   line(l[0]+700,l[1]+700,m[0]+700,m[1]+700)
 end
+
+def septagram
+  roots = rootsUnity(7).map{|n|i,j=n; [100*i,100*j]}
+  l,m =roots.shuffle.take(2)
+  line(l[0]+1300,l[1]+800,m[0]+1300,m[1]+800)
+end
+
 
 def bezierLand
   x, y = [width/2,height/2] # center point
@@ -118,6 +127,7 @@ def bezierLand
   line(width-q,height-r,width-s,height-t)
 
   pentagram
+  septagram
 end
 
 def draw
