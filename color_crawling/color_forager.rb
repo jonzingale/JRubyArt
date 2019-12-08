@@ -51,16 +51,16 @@ require (File.expand_path('./color_crawlers', File.dirname(__FILE__)))
 		@thing = BeingInTheWorld.new
 	end
 
-	def scale_img(image,scale_num,scale_denom,x,y)
-		scale(scale_num/scale_denom.to_f)
+	def scale_img(image,scale_denom,x,y)
+		scale(@width/scale_denom.to_f)
 		image(image,x,y)
-		scale(scale_denom/scale_num.to_f)
+		scale(scale_denom/@width.to_f)
 	end
 
 	def images
 		if @i < 1
-			scale_img(@img,1.3*width,2.2*@img.width.to_f,@w+900,0)# right picture
-			scale_img(@jmg,0.6*width,@img.width.to_f,0,0)# left picture
+			scale_img(@img, 2*@img.width.to_f, @width/2, 20)# right picture
+			scale_img(@jmg, 3*@img.width.to_f, 0, 0)# left picture
 
 			save(ENV['HOME']+'/Desktop/crawlerImages/test.png')
 			@loaded = loadImage(ENV['HOME']+"/Desktop/crawlerImages/test.png") ; @i = 1
@@ -88,7 +88,7 @@ require (File.expand_path('./color_crawlers', File.dirname(__FILE__)))
 		fill(*@m,250) ; ellipse(c-100,*oords)
 
 		# best guess ellipse
-		pos = crawler_z.position
+		pos = crawler_y.position
 		color = rgb_converter(*pos)
 		fill(*color,200) ; ellipse(c,*oords)
 	end
@@ -104,5 +104,5 @@ require (File.expand_path('./color_crawlers', File.dirname(__FILE__)))
 		# fill(0) ; text("distance from desire: #{@m} units",100,40)
 
 		# # show best guess distance
-		fill(0) ; text("distance from desire: #{crawler_p.guess.round} units",100,40)
+		fill(0) ; text("distance from desire: #{crawler_y.guess.round} units",100,40)
 	end
