@@ -6,6 +6,7 @@ def setup
   frame_rate 30
   fill 2.8, 2.6
   smooth
+  noStroke
 end
 
 def mask
@@ -14,14 +15,14 @@ def mask
 end
 
 def content
-	i, *t = [27,61,3,8,56,2,45,1,1].shuffle.unshift(1)
+	i, *t = (1..4).map{ rand(60) }.unshift(1)
 
 	# green meanie
 	newcolor = color rand(3)*t[1],rand(t[2])+100,rand(55)
 	fill newcolor
-	b1 = 180*i + width/(rand(10)+1) # stretch
+	b1 = 180 * i + width/(rand(10)+1) # stretch
 	b2 = 200 * rand(0)
-	bezier(b1, b2, 81, 81, 89, 89, 15, 80)
+	bezier(b1, b2, 81, 81, 89, 89, 150, 80)
 
 	# big blue
 	(1..8).each do
@@ -29,9 +30,9 @@ def content
 		fill newcolor
 
 		b1 = 8 * i
-		b2 = 8 * rand(8)
-		b3 = height/2+81*t[0]%40
-		b4 = 81+t[3]
+		b2 = 6 * rand(8)
+		b3 = height/2 + 81
+		b4 = 81
 		bezier(b1, b2, b3, b4, 890, 890, 815, 880)
 	end
 
@@ -40,13 +41,15 @@ def content
 	a, b, c = (1..3).map {|i| rand(3)}
 	xx = 30 + width/2
 	yy = (a+30+b**2)**c % 400 + height/2
-	xr = 20+rand(100)
+	xr = 20 + rand(100)
 	yr = 50
-	ellipse(xx, yy, xr, yr)
+	ellipse(xx, yy-200, xr, yr)
 
-	newcolor = color(rand(25)+0,rand(25)+100,rand(55)+100)
+	newcolor = color(rand(25),rand(25)+100,rand(55)+100)
 	fill newcolor
-	ellipse(rand(width),rand(height),rand(width)/20,rand(height)/20)
+
+	params = [width, height, width/20, height/20].map {|t| rand(t)}
+	ellipse(*params)
 end
 
 def draw
