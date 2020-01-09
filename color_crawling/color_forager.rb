@@ -41,6 +41,7 @@ require (File.expand_path('./color_crawlers', File.dirname(__FILE__)))
 		text_font create_font("SanSerif",55) ; no_stroke
 
 		@img = loadImage(ENV['HOME']+"/Desktop/crawlerImages/pic1.png") # right
+		# @img = loadImage(ENV['HOME']+"/Desktop/crawlerImages/cornucopia.png") # right
 		@jmg = loadImage(ENV['HOME']+"/Desktop/crawlerImages/pic2.png") # left
 		@w,@h = [width,height].map{|i|i/2.0}
 		@i = 0
