@@ -97,7 +97,6 @@ def septagram
   line(l[0]+1300,l[1]+800,m[0]+1300,m[1]+800)
 end
 
-
 def bezierLand
   x, y = [width/2,height/2] # center point
   g, b = [@t*2,@t*2.1] #greens blues
@@ -125,13 +124,12 @@ def bezierLand
   r,t = [a,c].map { |i| height - i*rand(300) }
   q,s = [b,d].map { |i| i*rand(800) }
   line(width-q,height-r,width-s,height-t)
-
-  pentagram
-  septagram
 end
 
 def draw
   walker_y ; walker_x # dots chasing one another.
   walker_z # dot chasing mouse
   bezierLand
+  pentagram
+  septagram
 end

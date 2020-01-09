@@ -1,44 +1,60 @@
 # Triangles gone wild
+def settings ; size(displayWidth/2, displayHeight/2) ; end
 
 def setup
-	text_font create_font("SanSerif",60);
-	background(10)
-	size(1400,800); #width,height
-  # color_mode RGB, 1.0
-  frame_rate 22
+  background 10
+  frame_rate 30
   fill 2.8, 2.6
   smooth
-  dex = 1
+end
+
+def mask
+	fill(0,0,0,8)
+	rect(0,0,width,height)
+end
+
+def content
+	a,b,c,d,e,f = (1..6).map {|i| rand(26)**i % 3 }
+
+	(1..10).map do
+		i, *t = [27,61,3,8,56,2,45,1,1].shuffle.unshift(1)
+
+		# green meanie
+		newcolor = color rand(3)*t[1],rand(t[2])+100,rand(55)
+		fill newcolor
+		b1 = 180*i + width/(rand(10)+1) # stretch
+		b2 = 200 * rand(i^i)
+		bezier(b1, b2, 81, 81, 89, 89, 15, 80)
+
+		# big blue
+		(1..8).each do |e|
+			i = (i + 1) % 100
+			newcolor = color rand(i+t[1]+t[2]), rand(25)+100, rand(55)+100
+			fill newcolor
+
+			i = (i + 1) % 300
+			b1 = 8 * i
+			b2 = 8 * rand(e)
+			b3 = height/2+81*t[0]%40
+			b4 = 81+t[3]
+			bezier(b1, b2, b3, b4, 890, 890, 815, 880)
+		end
+
+		newcolor = color rand(255), rand(25)+100, rand(55)+100
+		fill newcolor
+		xx = 30 + width/2
+		yy = (a+30+b**2)**c % 400 + height/2
+		xr = 20+rand(100)
+		yr = 50
+		ellipse(xx, yy, xr, yr)
+	end
+
+	newcolor = color(rand(25)+0,rand(25)+100,rand(55)+100)
+	fill newcolor
+	ellipse(rand(width),rand(height),rand(width)/20,rand(height)/20)
 end
 
 def draw
-it = rand(25)
-a,b,c,d,e,f = (1..6).map{|i| (it**i) % 3 }
-
-(1..10).map do |i|
-	t = [27,61,3,8,56,2,45,1].shuffle
-	fill(color(rand(2)*t[1],rand(t[2])+100,rand(55)))
-	bezier(80*i+(width/2), 200*rand(i^i),81,81,89, 89, 15, 80)
-	# fill(color(rand(255)%it,rand(25)+1,rand(55)+200))
-	
-	i = 0
-	(1..8).each do |e| ## big blue stuff
-		i += 1
-		i = 0 if i%100==0
-	fill(color(rand(i+t[4]+t[2]),rand(25)+100,rand(55)+100))
-end
-
-	(1..8).each do |e| # crazy green dude
-		i += 1
-		i = 0 if i%300==0
-		bezier(8*i, (8*rand(e)),(height/2)+81*t[0]%40,81+t[2],890, 890, 815, 880)
-	end 	
-
-	fill(color(rand(255),rand(25)+100,rand(55)+100))
-	ellipse(30+(width/2),((a+30+b**2)**c % 400)+(height/2),20+rand(100),20)
-end
-
-
-fill(color(rand(25)+0,rand(25)+100,rand(55)+100))
-ellipse(rand(width),rand(height),rand(width)/60,rand(height)/60)
+	mask
+	content
 end
