@@ -1,13 +1,18 @@
 # Spirals cause Jake asked for them.
 R = 100.freeze
 
+  def settings
+    size(displayWidth, displayHeight)
+  end
+
+
 def setup
 	text_font create_font("SanSerif",60);
 	background(10)
 	# width, height
-	size(1920,1080) #JackRabbit
+	# size(1920,1080) #JackRabbxit
 	# size(1500,900) #HOME
-  frame_rate 5
+  frame_rate 5 # 135
   fill 2.8, 2.6
   smooth
   @t=1 ; @i = 0
@@ -74,14 +79,14 @@ ellipse(x*@sin,y*@cos-200,tit*10,tit*10)
 	#bezier(*roots)
 
 	#cheetoz
-	#fill(200); steps = 39.0;
-	#(0..10).map do |i|
+	# fill(200); steps = 39.0;
+	# (0..10).map do |i|
 	#  t = i.to_f / steps
 	#  xs = x_bs+[t]
 	#  ys = y_bs+[t]
 	#  a = bezierPoint(*xs);
 	#  b = bezierPoint(*ys);
-
+	#  noStroke
 	#  ellipse(a*@cos, b*@cos, 90, 30);
 
 	# spidery-web
