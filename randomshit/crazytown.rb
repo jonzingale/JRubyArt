@@ -3,14 +3,14 @@ def settings
 end
 
 def setup
-  @w, @h = [width/2,height/2] # center point
+  @w, @h = [width/2, height/2]
   frame_rate 135
   background 0
 end
 
 def update_variables
   @t = @t ? (@t+=1) % 360 : 0
-  @cos, @sin = %w(sin cos).map{|s| Math.send(s, @t) }
+  @cos, @sin = %w(sin cos).map { |s| Math.send(s, @t) }
   @r = rand 40
 end
 
@@ -21,7 +21,16 @@ def grassland
   fill(r,g,b) ; strokeWeight(0.3) ; stroke((r*g*b)%255)
 
   lit = rand(width/2)
-  boots = [lit,height-lit,rand(lit),rand(@h),rand(width),rand(height),width-lit,height-rand(200)]
+  boots = [
+    lit,
+    height-lit,
+    rand(lit),
+    rand(@h),
+    rand(width),
+    rand(height),
+    width-lit,
+    height-rand(200)
+  ]
   noFill; stroke(rand(5)+lit, rand(30)+lit, rand(255), 220)
   bezier(*boots)
 end
