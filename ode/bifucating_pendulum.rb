@@ -1,12 +1,16 @@
 require 'matrix'
 require 'cmath'
 
+  def settings
+  	scale = 1
+    size(displayWidth/scale, displayHeight/scale)
+  end
+
 # I suspect I will want to try this without the matrices at first.
 	def setup
-		size(displayWidth, displayHeight)
 		colorMode(HSB,360,100,100,100)
 		@w, @h = [width/2, height/2]
-    frame_rate 10
+    frame_rate 7
 
 		background(0)
 		stroke(210,100,100,100)
