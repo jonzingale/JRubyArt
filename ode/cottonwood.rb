@@ -6,22 +6,19 @@ require 'cmath'
     size(displayWidth/scale, displayHeight/scale)
   end
 
-# I suspect I will want to try this without the matrices at first.
   def setup
     colorMode(HSB,360,100,100,100)
     @w, @h = [width/2, height/2]
-    frame_rate 7
-
-    background(0)
-    stroke(210,100,100,100)
     stroke_width 1
+    frame_rate 7
+    background 0
+
     @pts = points 9000
     @del_t = 0.03
   end
 
   def cent_rand
     10 * (rand - 1 * rand)
-    # -10 * rand
   end
 
   def points num
@@ -29,8 +26,6 @@ require 'cmath'
       [cent_rand, 2*cent_rand, cent_rand]
     end
   end
-
-  def abs(n) ; (n**2)**0.5 ; end
 
   def diff(x,y,z)
     # nonlinear oscillator
@@ -44,7 +39,7 @@ require 'cmath'
 
     # huygens clocks 
     b = 2 ; k = 1 # x, y, z all good!
-    [y, -x*k -b*y + 6*Math.cos(z), 1]
+    [y, 6*Math.cos(z) - (b*y + x*k) , 1]
 
     # split up
     # b = 1 ; k = 1.2*Math.cos(x) # x, y, z all good!
@@ -79,8 +74,5 @@ require 'cmath'
       line (Xu*x)+@w, (Yu*y)+@h, (Xu*s)+@w, (Yu*t)+@h
     end
 
-    @pts = @next_pts.map do |x,y,z|
-      [x,y,z]
-      # [cent_rand,cent_rand,cent_rand]
-    end
+    @pts = @next_pts.map { |x,y,z| [x,y,z] }
   end
