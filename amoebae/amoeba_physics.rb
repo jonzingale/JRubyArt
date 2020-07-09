@@ -17,8 +17,11 @@ class Walker
 	end
 end
 
-	def setup
+	def settings
 		size(displayWidth, displayHeight)
+	end
+
+	def setup
 		colorMode(HSB,360,100,100,100)
 		background(0) ; frame_rate 20
 	  text_font create_font("SanSerif",10)
@@ -50,7 +53,7 @@ end
 	def lightning
 		range = @walkers.count
 		me, you = [0,1].map{ @walkers[rand(range)]}
-		stroke(*me.color) ; stroke_width(1)
+		stroke(*me.color) ; stroke_width(0.4)
 		vect, wect = [me.coords, you.coords]
 		line(*vect,*wect)
 
@@ -73,6 +76,9 @@ end
 
 	def draw
 		# clear
+		fill(0,0,0,5)
+		rect(0,0,width,height)
+
 		counter
 		spawn 3000
 		render
