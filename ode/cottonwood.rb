@@ -2,7 +2,7 @@ require 'matrix'
 require 'cmath'
 
   def settings
-    scale = 1
+    scale = 1.3
     size(displayWidth/scale, displayHeight/scale)
   end
 
@@ -10,10 +10,10 @@ require 'cmath'
     colorMode(HSB,360,100,100,100)
     @w, @h = [width/2, height/2]
     stroke_width 1
-    frame_rate 7
+    frame_rate 12
     background 0
 
-    @pts = points 9000
+    @pts = points 6000
     @del_t = 0.03
   end
 
@@ -22,28 +22,11 @@ require 'cmath'
   end
 
   def points num
-    (1..num).map do
-      [cent_rand, 2*cent_rand, cent_rand]
-    end
+    (1..num).map { [cent_rand, 1*cent_rand, cent_rand] }
   end
 
   def diff(x,y,z)
-    # nonlinear oscillator
-    # b = 1 ; [ y, -b*y - Math.sin(x), z]
-
-    # b= 3 ; k=Math.cos(x*y) # x, y, z all good!
-    # [y, -x*k -b*y + PI*Math.sin(y), 1]
-
-    # pendulum
-    # b = 0 ; [y, -Math.sin(x),1]
-
-    # huygens clocks 
-    b = 2 ; k = 1 # x, y, z all good!
-    [y, 6*Math.cos(z) - (b*y + x*k) , 1]
-
-    # split up
-    # b = 1 ; k = 1.2*Math.cos(x) # x, y, z all good!
-    # [y, - x*k - b*y + PI*Math.sin(y), 1]
+    [-y, Math.sin(x), 1]
   end
 
   def improved_euler
@@ -62,17 +45,17 @@ require 'cmath'
     end
   end
 
-  Xu, Yu = 70, 70
+  Xu, Yu = 20, 20
 
   def draw
     clear
     improved_euler
-    @pts.zip(@next_pts).each do |(x,y,z),(s,t,r)|
-      stroke 200+r, 100, 100, 80
+    @pts.zip(@next_pts).each do | (x,y,z), (s,t,r) |
+      stroke 180+r, 100, 100, 80
 
       # line (Xu*x)+@w, (Yu*z)+@h, (Xu*s)+@w, (Yu*r)+@h
       line (Xu*x)+@w, (Yu*y)+@h, (Xu*s)+@w, (Yu*t)+@h
     end
 
-    @pts = @next_pts.map { |x,y,z| [x,y,z] }
+    @pts = @next_pts
   end
