@@ -32,7 +32,7 @@ def setup
     # trig = n.rect.map{|t| Math.tan(PI*t)}
     # c + n * Complex(*trig)
 
-    # (n ** 2) + c # mandelbrot
+    (n ** 2) + c # mandelbrot
 
     # c + ROOT5 * (PHI**n - PHA**n) #fib
 
