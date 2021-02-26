@@ -8,11 +8,8 @@ PHI = (1+5**0.5)/2.0
 PHA = (1-5**0.5)/2.0
 
 def settings
-  # size displayWidth, displayHeight
-  size 1920/2, 1080/2
-  # size 900, 900
-  smooth(8)
-
+  size displayWidth/2, displayHeight/2
+  smooth 8
 end
 
 def setup
@@ -32,9 +29,11 @@ def setup
     # trig = n.rect.map{|t| Math.tan(PI*t)}
     # c + n * Complex(*trig)
 
-    (n ** 2) + c # mandelbrot
+    # mandelbrot
+    c + n ** 2
 
-    # c + ROOT5 * (PHI**n - PHA**n) #fib
+    # fibonacci
+    # c + ROOT5 * (PHI**n - PHA**n)
 
     # canyon like
     # trig = n.rect.map{|t| Math.cos(PI*t)}
