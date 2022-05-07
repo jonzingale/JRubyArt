@@ -1,6 +1,7 @@
 # !/usr/bin/env ruby
 require 'open-uri'
 require 'mechanize'
+require 'byebug'
 
 IMAGES_PATH = File.expand_path('.', File.dirname(__FILE__)).freeze
 HobbesPath = "#{IMAGES_PATH}/hobbes.png".freeze
@@ -13,23 +14,6 @@ HubbleImage_Sel = './/div[@class="wallpaper"]//img'.freeze
 NasaPath = 'http://apod.nasa.gov/apod/'.freeze
 NasaImage_Sel = './/img/parent::a'.freeze
 NAME_REGEX = /\/(\w+_?)+(.jpg)?$/.freeze
-
-def setup
-	size(displayWidth, displayHeight)
-
-	# rand(3) == 0 ? get_nasa_pic : get_hubble_pic
-	get_nasa_pic
-
-	@star_image = loadImage(StarPath)
-	image(@star_image, 0, 0, *rescalar)
-
-	calvin_or_hobbes = [HobbesPath, CalvinPath][rand 2]
-	@hobbes_image = loadImage(calvin_or_hobbes)
-	image(@hobbes_image, 0, 0, 1920, 1080)
-
-	epoch = DateTime.now.strftime('%s')
-	save("#{IMAGES_PATH}/images/calvinhobbes_#{@stub}.png")
-end
 
 def rescalar
 	width = @star_image.width
@@ -55,6 +39,8 @@ def get_nasa_pic
 	page = agent.get(NasaPath+'astropix.html')
 	stub = page.at(NasaImage_Sel)['href']
 
+	byebug
+	# This fails: open(NasaPath+stub)
 	open(StarPath, 'wb') {|f| f << open(NasaPath+stub).read }
 	name_stub stub
 end
@@ -62,4 +48,23 @@ end
 def name_stub stub
 	stub.gsub!('-','_')
 	@stub = NAME_REGEX.match(stub)[1]
+end
+
+def settings
+	size(displayWidth, displayHeight)
+end
+
+def setup
+	# rand(3) == 0 ? get_nasa_pic : get_hubble_pic
+	get_nasa_pic
+
+	@star_image = loadImage(StarPath)
+	image(@star_image, 0, 0, *rescalar)
+
+	calvin_or_hobbes = [HobbesPath, CalvinPath][rand 2]
+	@hobbes_image = loadImage(calvin_or_hobbes)
+	image(@hobbes_image, 0, 0, 1920, 1080)
+
+	epoch = DateTime.now.strftime('%s')
+	save("#{IMAGES_PATH}/images/calvinhobbes_#{@stub}.png")
 end

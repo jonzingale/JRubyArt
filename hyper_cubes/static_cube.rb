@@ -1,5 +1,6 @@
+def settings ; size(displayWidth/2, displayHeight/2) ; end
 def setup
-	size(1450,870) #HOME
+	# size(1450,870) #HOME
 	# size(1920,1080) #JackRabbit
 	background(20) ; frame_rate 1
 	@w,@h = [width,height].map{|i|i/2.0}
