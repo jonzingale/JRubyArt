@@ -30,7 +30,12 @@ def setup
     # c + n * Complex(*trig)
 
     # mandelbrot
-    c + n ** 2
+    # c + n ** 2
+
+    # lennard-jones potential
+    # These numbers are really small, so where?
+    # n == 0 ? 1 : c + ((1/n)**12 - (1/n)**6)
+    n == 0 ? 1 : c + ((1/n)**2 - (1/n)**1)
 
     # fibonacci
     # c + ROOT5 * (PHI**n - PHA**n)
