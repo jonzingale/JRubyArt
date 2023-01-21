@@ -10,6 +10,15 @@ Decent documentation live here:<p>
 [Mac Documentation](http://ruby-processing.github.io/JRubyArt/mac_start/).<p>
 [Differences with RubyProcessing](http://ruby-processing.github.io/JRubyArt/jruby_art/update/2015/09/28/comparison.html).<p>
 
+Some java jdk will likely need to be installed, with a pointer to:
+1. `https://www.oracle.com/java/technologies/downloads/#jdk17-mac`
+2. `export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home`
+
+Note: installation may require sudo in number of places:
+  1. gem install jruby_art
+  2. sudo k9 --install
+  3. etc...
+
 further,
 
 size, smooth and many other setup methods are no longer<p>
