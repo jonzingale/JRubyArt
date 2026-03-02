@@ -11,7 +11,7 @@ ruby '2.3.1'
 gem 'nokogiri'
 gem 'mechanize'
 gem 'rake'
-gem 'rack', '~>1.1'
+gem 'rack', '~>2.2'
 gem 'rspec', :require => 'spec'
 # gem "rails"
 
